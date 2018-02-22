@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.diary.dao.DiaryDAO">
+	<select id="getAllDiary" resultType="com.diary.vo.DiaryVO">
+		SELECT *
+		FROM Diary
+	</select>
+
+	<select id="getDiary" resultType="com.diary.vo.DiaryVO" parameterType="java.lang.Integer">
+		SELECT *
+		FROM Diary
+		WHERE ID = #{ID}
+	</select>
+
+	<insert id="insertDiary" parameterType="hashmap">
+		INSERT INTO Diary(TITLE, CONTENT, START_DATE, END_DATE, START_TIME, END_TIME, ALARM_TIME)
+		VALUES(#{TITLE}, #{CONTENT}, #{START_DATE}, #{END_DATE}, #{START_TIME}, #{END_TIME}, #{ALARM_TIME})
+	</insert>
+	
+	<update id="updateDiary" parameterType="hashmap">
+		UPDATE Diary
+		SET TITLE = #{TITLE}, CONTENT = #{CONTENT}, START_DATE = #{START_DATE}, END_DATE = #{END_DATE}, START_TIME = #{START_TIME}, END_TIME = #{END_TIME}, ALARM_TIME = #{ALARM_TIME}
+		WHERE ID = #{ID}  
+	</update>
+	
+	<delete id="deleteDiary" parameterType="java.lang.Integer">
+		DELETE FROM Diary
+		WHERE ID = #{ID}
+	</delete>
+</mapper>
